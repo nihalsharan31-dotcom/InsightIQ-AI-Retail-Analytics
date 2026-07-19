@@ -1,24 +1,62 @@
 import streamlit as st
+from config import APP_NAME, APP_TAGLINE
 
-st.title("🏠 Home")
+st.set_page_config(page_title="Home", layout="wide")
 
-st.markdown("## Welcome to InsightIQ")
+# -----------------------------
+# Header
+# -----------------------------
+st.title(f"📊 {APP_NAME}")
+st.caption(APP_TAGLINE)
 
-st.write(
-    """
-    InsightIQ is an AI-powered business analytics platform designed for
-    retail and sales data.
+st.divider()
 
-    Upload your dataset to:
-    - Analyze sales performance
-    - Track KPIs
-    - Generate business insights
-    - Forecast future trends
-    """
-)
+# -----------------------------
+# KPI Cards
+# -----------------------------
+col1, col2, col3, col4 = st.columns(4)
 
-col1, col2, col3 = st.columns(3)
+col1.metric("Revenue", "₹0")
+col2.metric("Profit", "₹0")
+col3.metric("Orders", "0")
+col4.metric("Customers", "0")
 
-col1.metric("Analytics", "10+ Modules")
-col2.metric("Charts", "20+ Visualizations")
-col3.metric("Reports", "PDF & Excel")
+st.divider()
+
+# -----------------------------
+# About
+# -----------------------------
+st.subheader("🚀 About InsightIQ")
+
+st.write("""
+InsightIQ is an AI-Powered Retail Analytics Platform that helps businesses transform raw sales data into meaningful insights.
+
+The platform provides:
+
+- 📁 Dataset Upload
+- 🧹 Data Cleaning
+- 📊 Data Visualization
+- 📈 Sales Analytics
+- 🤖 AI Business Insights
+- 🔮 Forecasting
+- 📄 PDF Reports
+""")
+
+st.divider()
+
+# -----------------------------
+# Future Dashboard
+# -----------------------------
+left, right = st.columns(2)
+
+with left:
+    st.subheader("📈 Dashboard Preview")
+    st.info("Sales charts will appear here after uploading a dataset.")
+
+with right:
+    st.subheader("🤖 AI Insights")
+    st.info("Business insights will appear here after data analysis.")
+
+st.divider()
+
+st.success("🎉 Welcome! Upload a dataset to begin your analytics journey.")
