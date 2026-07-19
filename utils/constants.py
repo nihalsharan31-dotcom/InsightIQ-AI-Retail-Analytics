@@ -1,0 +1,8 @@
+SUPPORTED_FILES = [
+    "csv",
+    "xlsx"
+]
+
+MAX_UPLOAD_SIZE = 50  # MB
+
+DEFAULT_PAGE_SIZE = 20

@@ -1,25 +1,19 @@
 import streamlit as st
+from config import APP_NAME, APP_TAGLINE
 
 st.set_page_config(
-    page_title="InsightIQ",
+    page_title=APP_NAME,
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.title("📊 InsightIQ")
-st.subheader("AI-Powered Retail & Sales Analytics Platform")
+st.title(APP_NAME)
 
-st.markdown("""
-Welcome to **InsightIQ**.
+st.caption(APP_TAGLINE)
 
-This platform helps businesses:
-- 📁 Upload sales datasets
-- 🧹 Clean messy data
-- 📊 Generate interactive dashboards
-- 🤖 Produce AI-powered business insights
-- 📈 Forecast future sales
-- 📄 Export reports
-""")
+st.success("Welcome to InsightIQ!")
 
-st.info("👈 Use the sidebar to navigate through the application.")
+st.info(
+    "Select a module from the sidebar to begin your analytics journey."
+)
