@@ -4,7 +4,11 @@ from utils.session_manager import (
     get_dataset,
     has_dataset,
 )
-
+from utils.dashboard_charts import (
+    sales_by_category,
+    sales_by_region,
+    top_products,
+)
 from utils.dashboard_metrics import calculate_kpis
 
 st.title("📊 Business Dashboard")
@@ -42,7 +46,7 @@ df = apply_filters(
     segment,
 )
 
-st.success("Dataset loaded successfully!")
+st.caption(f"📁 Active Dataset: {len(df):,} records loaded")
 
 kpis = calculate_kpis(df)
 
@@ -66,4 +70,24 @@ col3.metric(
 col4.metric(
     "📈 Average Sales",
     f"${kpis['average_sales']:,.2f}"
+)
+st.divider()
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.plotly_chart(
+        sales_by_category(df),
+        use_container_width=True
+    )
+
+with col2:
+    st.plotly_chart(
+        sales_by_region(df),
+        use_container_width=True
+    )
+
+st.plotly_chart(
+    top_products(df),
+    use_container_width=True
 )
