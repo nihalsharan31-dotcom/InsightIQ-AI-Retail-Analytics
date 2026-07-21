@@ -1,5 +1,5 @@
 import streamlit as st
-
+from utils.dashboard_filters import apply_filters
 from utils.session_manager import (
     get_dataset,
     has_dataset,
@@ -14,6 +14,33 @@ if not has_dataset():
     st.stop()
 
 df = get_dataset()
+st.divider()
+
+st.subheader("Dashboard Filters")
+
+col1, col2, col3 = st.columns(3)
+
+region = col1.selectbox(
+    "Region",
+    ["All"] + sorted(df["Region"].unique().tolist())
+)
+
+category = col2.selectbox(
+    "Category",
+    ["All"] + sorted(df["Category"].unique().tolist())
+)
+
+segment = col3.selectbox(
+    "Segment",
+    ["All"] + sorted(df["Segment"].unique().tolist())
+)
+
+df = apply_filters(
+    df,
+    region,
+    category,
+    segment,
+)
 
 st.success("Dataset loaded successfully!")
 
