@@ -27,7 +27,10 @@ if uploaded_file:
 
     try:
 
+        from utils.session_manager import set_dataset
+
         dataframe = load_dataset(uploaded_file)
+        set_dataset(dataframe)
 
         st.success("Dataset uploaded successfully!")
 
