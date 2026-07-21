@@ -1,32 +1,21 @@
 import plotly.express as px
+import pandas as pd
 
 
-def histogram(df, column):
+def create_histogram(df: pd.DataFrame, column: str):
+    """Create histogram for a numeric column."""
     return px.histogram(
         df,
         x=column,
-        title=f"Distribution of {column}"
+        title=f"Distribution of {column}",
+        nbins=30,
     )
 
 
-def box_plot(df, column):
+def create_box_plot(df: pd.DataFrame, column: str):
+    """Create box plot for a numeric column."""
     return px.box(
         df,
         y=column,
-        title=f"Box Plot of {column}"
+        title=f"Box Plot of {column}",
     )
-
-
-def correlation_heatmap(df):
-    numeric_df = df.select_dtypes(include="number")
-
-    corr = numeric_df.corr(numeric_only=True)
-
-    fig = px.imshow(
-        corr,
-        text_auto=True,
-        aspect="auto",
-        title="Correlation Heatmap"
-    )
-
-    return fig
