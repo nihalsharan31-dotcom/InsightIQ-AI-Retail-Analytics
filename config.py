@@ -1,9 +1,7 @@
 APP_NAME = "InsightIQ"
 
-APP_TAGLINE = "AI-Powered Retail Analytics Platform"
+APP_TITLE = "AI-Powered Retail Analytics Platform"
 
-PRIMARY_COLOR = "#2563EB"
+SUPPORTED_FILE_TYPES = ["csv", "xlsx"]
 
-SECONDARY_COLOR = "#1E293B"
-
-VERSION = "1.0.0"
+MAX_FILE_SIZE_MB = 50

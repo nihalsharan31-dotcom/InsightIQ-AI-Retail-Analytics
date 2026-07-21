@@ -1,5 +1,5 @@
 import streamlit as st
-from config import APP_NAME, APP_TAGLINE
+from config import APP_NAME, APP_TITLE
 
 st.set_page_config(page_title="Home", layout="wide")
 
@@ -7,7 +7,7 @@ st.set_page_config(page_title="Home", layout="wide")
 # Header
 # -----------------------------
 st.title(f"📊 {APP_NAME}")
-st.caption(APP_TAGLINE)
+st.caption(APP_TITLE)
 
 st.divider()
 

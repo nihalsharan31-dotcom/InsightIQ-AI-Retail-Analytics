@@ -1,19 +1,17 @@
 import streamlit as st
-from config import APP_NAME, APP_TAGLINE
+
+from config import APP_NAME, APP_TITLE
 
 st.set_page_config(
     page_title=APP_NAME,
     page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 
 st.title(APP_NAME)
 
-st.caption(APP_TAGLINE)
-
-st.success("Welcome to InsightIQ!")
+st.caption(APP_TITLE)
 
 st.info(
-    "Select a module from the sidebar to begin your analytics journey."
+    "Use the sidebar to navigate to the Upload page."
 )
