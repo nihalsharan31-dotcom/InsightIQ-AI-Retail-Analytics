@@ -1,7 +1,11 @@
 import streamlit as st
+import plotly.graph_objects as go
 
 from utils.session_manager import has_dataset, get_dataset
-from utils.forecast import prepare_sales_data
+from utils.forecast import (
+    prepare_sales_data,
+    forecast_sales,
+)
 
 st.title("📈 Sales Forecasting")
 
@@ -13,8 +17,45 @@ df = get_dataset()
 
 sales_data = prepare_sales_data(df)
 
-st.subheader("Prepared Time Series")
+forecast_days = st.selectbox(
+    "Forecast Period",
+    [30, 60, 90],
+    index=0
+)
 
-st.dataframe(sales_data)
+forecast_df = forecast_sales(
+    sales_data,
+    forecast_days
+)
 
-st.success(f"Prepared {len(sales_data)} daily records for forecasting.")
+fig = go.Figure()
+
+fig.add_trace(
+    go.Scatter(
+        x=sales_data["ds"],
+        y=sales_data["y"],
+        mode="lines",
+        name="Historical Sales",
+    )
+)
+
+fig.add_trace(
+    go.Scatter(
+        x=forecast_df["ds"],
+        y=forecast_df["Forecast"],
+        mode="lines",
+        name="Forecast",
+    )
+)
+
+fig.update_layout(
+    title="Sales Forecast",
+    xaxis_title="Date",
+    yaxis_title="Sales",
+    hovermode="x unified",
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+with st.expander("View Forecast Data"):
+    st.dataframe(forecast_df)
