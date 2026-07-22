@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
-
+from utils.forecast import build_forecast_summary
+from ai.forecast_explainer import explain_forecast
 from utils.session_manager import has_dataset, get_dataset
 from utils.forecast import (
     prepare_sales_data,
@@ -59,3 +60,19 @@ st.plotly_chart(fig, use_container_width=True)
 
 with st.expander("View Forecast Data"):
     st.dataframe(forecast_df)
+    st.divider()
+
+st.subheader("🤖 AI Forecast Insights")
+
+if st.button("Generate AI Forecast Analysis"):
+
+    with st.spinner("Analyzing forecast..."):
+
+        summary = build_forecast_summary(
+            sales_data,
+            forecast_df
+        )
+
+        ai_report = explain_forecast(summary)
+
+    st.markdown(ai_report)

@@ -62,3 +62,27 @@ def forecast_sales(
     })
 
     return forecast_df
+def build_forecast_summary(
+    sales_data: pd.DataFrame,
+    forecast_df: pd.DataFrame
+) -> str:
+    """
+    Build a concise summary of historical and forecast data for the AI model.
+    """
+
+    recent_avg = sales_data["y"].tail(30).mean()
+    forecast_avg = forecast_df["Forecast"].mean()
+
+    growth = ((forecast_avg - recent_avg) / recent_avg) * 100
+
+    summary = f"""
+Historical Records: {len(sales_data)}
+
+Average Sales (Last 30 Days): {recent_avg:.2f}
+
+Average Forecast Sales: {forecast_avg:.2f}
+
+Forecast Growth: {growth:.2f}%
+"""
+
+    return summary
