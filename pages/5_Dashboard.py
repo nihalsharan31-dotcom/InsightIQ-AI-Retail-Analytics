@@ -1,4 +1,8 @@
 import streamlit as st
+from ai.dashboard_explainer import explain_dashboard
+from ai.chart_explainer import explain_chart
+from ai.dashboard_context import build_dashboard_context
+from utils.session_manager import get_dataset
 from utils.dashboard_filters import apply_filters
 from utils.session_manager import (
     get_dataset,
@@ -75,18 +79,48 @@ st.divider()
 
 col1, col2 = st.columns(2)
 
+# ---------------------------
+# Sales by Category
+# ---------------------------
 with col1:
+
     st.plotly_chart(
         sales_by_category(df),
         use_container_width=True
     )
 
+    category_sales = (
+        df.groupby("Category")["Sales"]
+        .sum()
+        .sort_values(ascending=False)
+    )
+
+    if st.button("✨ Explain Sales by Category"):
+
+        chart_data = category_sales.to_string()
+
+        with st.spinner("Analyzing chart..."):
+
+            explanation = explain_chart(
+                "Sales by Category",
+                chart_data
+            )
+
+        st.markdown(explanation)
+
+# ---------------------------
+# Sales by Region
+# ---------------------------
 with col2:
+
     st.plotly_chart(
         sales_by_region(df),
         use_container_width=True
     )
 
+# ---------------------------
+# Top Products
+# ---------------------------
 st.plotly_chart(
     top_products(df),
     use_container_width=True
