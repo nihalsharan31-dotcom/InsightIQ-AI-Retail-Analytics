@@ -1,0 +1,547 @@
+/* ==========================================================
+   InsightIQ - Aurora Glass Theme
+   Professional SaaS Dashboard UI
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================================
+   ROOT COLORS
+========================================================== */
+
+:root{
+
+    --bg:#070B18;
+
+    --card:rgba(255,255,255,.07);
+
+    --card-hover:rgba(255,255,255,.11);
+
+    --border:rgba(255,255,255,.12);
+
+    --primary:#7C3AED;
+
+    --secondary:#06B6D4;
+
+    --success:#22C55E;
+
+    --warning:#FACC15;
+
+    --danger:#EF4444;
+
+    --text:#F8FAFC;
+
+    --muted:#94A3B8;
+
+}
+
+/* ==========================================================
+   APP BACKGROUND
+========================================================== */
+
+html,
+body,
+.stApp{
+
+    font-family:'Inter',sans-serif;
+
+    color:var(--text);
+
+    background:
+    radial-gradient(circle at top left,#312E81 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#0F766E 0%,transparent 35%),
+    var(--bg);
+
+}
+
+/* ==========================================================
+   HIDE STREAMLIT BRANDING
+========================================================== */
+
+#MainMenu{
+
+    visibility:hidden;
+
+}
+
+footer{
+
+    visibility:hidden;
+
+}
+
+/* ==========================================================
+   PAGE CONTAINER
+========================================================== */
+
+.block-container{
+
+    max-width:1500px;
+
+    padding-top:2rem;
+
+    padding-left:2rem;
+
+    padding-right:2rem;
+
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+section[data-testid="stSidebar"]{
+
+    background:rgba(15,23,42,.92);
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(25px);
+
+}
+
+/* ==========================================================
+   HEADINGS
+========================================================== */
+
+h1{
+
+    color:white;
+
+    font-size:2.4rem!important;
+
+    font-weight:700!important;
+
+}
+
+h2{
+
+    color:white;
+
+    font-size:1.8rem!important;
+
+    font-weight:600!important;
+
+}
+
+h3{
+
+    color:white;
+
+    font-size:1.3rem!important;
+
+}
+
+p{
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.hero-box{
+
+    padding:55px;
+
+    border-radius:30px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(124,58,237,.35),
+
+        rgba(6,182,212,.18)
+
+    );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(25px);
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+    box-shadow:
+
+    0 20px 45px rgba(0,0,0,.35);
+
+}
+
+.hero-box h1{
+
+    font-size:54px!important;
+
+    margin-bottom:10px;
+
+}
+
+.hero-box h3{
+
+    color:#CBD5E1;
+
+    font-weight:400;
+
+}
+
+.hero-box p{
+
+    color:#94A3B8;
+
+    font-size:18px;
+
+}
+
+/* ==========================================================
+   GLASS CARD
+========================================================== */
+
+.glass-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    margin-bottom:22px;
+
+    backdrop-filter:blur(20px);
+
+    transition:.30s;
+
+}
+
+.glass-card:hover{
+
+    background:var(--card-hover);
+
+    transform:translateY(-4px);
+
+}
+
+/* ==========================================================
+   FEATURE CARDS
+========================================================== */
+
+.feature-card{
+
+    background:var(--card);
+
+    border-radius:22px;
+
+    border:1px solid var(--border);
+
+    padding:28px;
+
+    text-align:center;
+
+    backdrop-filter:blur(20px);
+
+    height:220px;
+
+    transition:.3s;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+    background:var(--card-hover);
+
+    box-shadow:0 15px 35px rgba(124,58,237,.25);
+
+}
+
+.feature-icon{
+
+    font-size:48px;
+
+    margin-bottom:12px;
+
+}
+
+.feature-title{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.feature-text{
+
+    color:var(--muted);
+
+}
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.stButton > button{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#7C3AED,#06B6D4);
+
+    color:#FFFFFF !important;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    text-shadow:none;
+
+    opacity:1 !important;
+
+    transition:.3s;
+}
+
+.stButton > button:hover{
+
+    color:#FFFFFF !important;
+
+    background:linear-gradient(135deg,#8B5CF6,#0891B2);
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(124,58,237,.30);
+}
+
+.stButton > button:focus{
+
+    color:#FFFFFF !important;
+
+}
+
+.stButton > button p{
+
+    color:#FFFFFF !important;
+
+    opacity:1 !important;
+
+}
+
+
+
+
+/* ==========================================================
+   METRIC CARDS
+========================================================== */
+
+div[data-testid="metric-container"]{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    transition:.3s;
+
+}
+
+div[data-testid="metric-container"]:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 10px 25px rgba(124,58,237,.25);
+
+}
+
+/* ==========================================================
+   SELECTBOX
+========================================================== */
+
+.stSelectbox{
+
+    margin-bottom:16px;
+
+}
+
+/* ==========================================================
+   DATAFRAME
+========================================================== */
+
+div[data-testid="stDataFrame"]{
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ==========================================================
+   ALERTS
+========================================================== */
+
+.stAlert{
+
+    border-radius:18px;
+
+}
+
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+hr{
+
+    border-color:rgba(255,255,255,.08);
+
+    margin-top:28px;
+
+    margin-bottom:28px;
+
+}
+
+/* ==========================================================
+   PLOTLY
+========================================================== */
+
+.js-plotly-plot{
+
+    background:rgba(255,255,255,.04);
+
+    border-radius:18px;
+
+    padding:12px;
+
+}
+/* ==========================================================
+   SIDEBAR NAVIGATION
+========================================================== */
+
+/* Navigation Buttons */
+section[data-testid="stSidebar"] button{
+
+    background: transparent !important;
+
+    color: #BFC7D5 !important;
+
+    border: none !important;
+
+    border-radius: 12px !important;
+
+    transition: all .3s ease;
+
+}
+
+/* Text inside button */
+section[data-testid="stSidebar"] button *{
+
+    color: inherit !important;
+
+}
+
+/* Hover */
+section[data-testid="stSidebar"] button:hover{
+
+    background: rgba(255,255,255,.10) !important;
+
+    color: #FFFFFF !important;
+
+    transform: translateX(4px);
+
+}
+
+/* Selected Page */
+section[data-testid="stSidebar"] button[aria-current="page"]{
+
+    background: linear-gradient(
+        90deg,
+        rgba(124,58,237,.55),
+        rgba(6,182,212,.25)
+    ) !important;
+
+    color: #FFFFFF !important;
+
+    font-weight: 700;
+
+    border-left: 4px solid #8B5CF6;
+
+}
+
+/* Sidebar Titles */
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3,
+section[data-testid="stSidebar"] label{
+
+    color: #FFFFFF !important;
+
+}
+/* ==========================================================
+   FILE UPLOADER - STREAMLIT 1.59
+========================================================== */
+
+/* Remove default label background */
+[data-testid="stFileUploader"] label{
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Upload area */
+[data-testid="stFileUploader"] > div{
+    background:#343A40 !important;
+    border:1px solid #4A5268 !important;
+    border-radius:14px !important;
+    padding:16px !important;
+}
+
+/* Inner upload row */
+[data-testid="stFileUploader"] > div > div{
+    background:#343A40 !important;
+}
+
+/* Upload button */
+[data-testid="stBaseButton-secondary"]{
+    background:linear-gradient(135deg,#7C3AED,#06B6D4)!important;
+    color:#FFFFFF!important;
+    font-weight:700!important;
+    border:none!important;
+}
+
+[data-testid="stBaseButton-secondary"] *{
+    color:#FFFFFF!important;
+    fill:#FFFFFF!important;
+}
+
+/* 200MB per file text */
+[data-testid="stFileUploader"] small{
+    color:#000000!important;
+    font-weight:600!important;
+}
+
+/* CSV XLSX text */
+[data-testid="stFileUploader"] span{
+    color:#000000!important;
+}

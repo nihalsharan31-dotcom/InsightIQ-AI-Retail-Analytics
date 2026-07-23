@@ -1,9 +1,13 @@
 import streamlit as st
+from utils.auth import require_dataset
 
+require_dataset()
 from utils.session_manager import (
     has_dataset,
     get_dataset,
 )
+
+from utils.ui import load_custom_css
 
 from ai.ai_assistant import ask_business_ai
 
@@ -17,17 +21,54 @@ from ai.suggestions import (
     SUGGESTED_QUESTIONS,
 )
 
-st.title("🤖 AI Business Analyst")
+# =====================================================
+# LOAD CSS
+# =====================================================
+
+load_custom_css()
+
+# =====================================================
+# HERO
+# =====================================================
+
+st.markdown("""
+<div class="hero-box">
+<h1>🤖 AI Business Analyst</h1>
+<h3>Your Intelligent Retail Assistant</h3>
+<p>
+Ask business questions, discover hidden insights,
+analyze sales trends, and receive AI-powered
+recommendations from your retail dataset.
+</p>
+</div>
+""", unsafe_allow_html=True)
+
+# =====================================================
+# DATASET CHECK
+# =====================================================
 
 if not has_dataset():
-    st.warning("Upload a dataset first.")
+    st.warning("⚠️ Please upload a dataset first.")
     st.stop()
 
 initialize_chat()
 
 df = get_dataset()
 
-st.subheader("💡 Suggested Questions")
+st.success("✅ AI Assistant Ready")
+
+st.write("")
+st.divider()
+
+# =====================================================
+# SUGGESTED QUESTIONS
+# =====================================================
+
+st.markdown("""
+<div class="glass-card">
+<h3>💡 Suggested Business Questions</h3>
+</div>
+""", unsafe_allow_html=True)
 
 cols = st.columns(2)
 
@@ -35,43 +76,108 @@ for i, question in enumerate(SUGGESTED_QUESTIONS):
 
     if cols[i % 2].button(question):
 
-        answer = ask_business_ai(df, question)
+        with st.spinner("🤖 Thinking..."):
+
+            answer = ask_business_ai(
+                df,
+                question
+            )
 
         add_message("User", question)
         add_message("AI", answer)
 
+st.write("")
 st.divider()
 
+# =====================================================
+# CUSTOM QUESTION
+# =====================================================
+
+st.markdown("""
+<div class="glass-card">
+<h3>📝 Ask Your Own Question</h3>
+</div>
+""", unsafe_allow_html=True)
+
 question = st.text_input(
-    "Ask your own business question"
+    "Ask anything about your retail business..."
 )
 
-if st.button("Ask AI"):
+if st.button("🚀 Ask AI"):
 
     if question.strip():
 
-        answer = ask_business_ai(
-            df,
-            question,
-        )
+        with st.spinner("Analyzing dataset..."):
+
+            answer = ask_business_ai(
+                df,
+                question
+            )
 
         add_message("User", question)
         add_message("AI", answer)
 
+st.write("")
 st.divider()
 
-st.subheader("💬 Conversation")
+# =====================================================
+# CHAT HISTORY
+# =====================================================
 
-for msg in get_chat_history():
+st.markdown("""
+<div class="glass-card">
+<h3>💬 AI Conversation</h3>
+</div>
+""", unsafe_allow_html=True)
 
-    if msg["role"] == "User":
+history = get_chat_history()
 
-        st.markdown(
-            f"**🧑 You:** {msg['content']}"
-        )
+if not history:
 
-    else:
+    st.info("Start by asking a business question.")
 
-        st.markdown(
-            f"**🤖 InsightIQ:** {msg['content']}"
-        )
+else:
+
+    for msg in history:
+
+        if msg["role"] == "User":
+
+            st.markdown(
+                f"""
+<div style="
+background:#1E293B;
+padding:15px;
+border-radius:15px;
+margin-bottom:10px;
+border-left:5px solid #06B6D4;
+">
+
+<b>🧑 You</b><br><br>
+
+{msg["content"]}
+
+</div>
+""",
+                unsafe_allow_html=True
+            )
+
+        else:
+
+            st.markdown(
+                f"""
+<div style="
+background:#312E81;
+padding:15px;
+border-radius:15px;
+margin-bottom:20px;
+border-left:5px solid #8B5CF6;
+">
+
+<b>🤖 InsightIQ AI</b><br><br>
+
+{msg["content"]}
+
+</div>
+""",
+                unsafe_allow_html=True
+            )

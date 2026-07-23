@@ -1,103 +1,156 @@
 import streamlit as st
-
-from config import APP_NAME, APP_TITLE
-from utils.ui import (
-    load_custom_css,
-    page_title,
-)
+from utils.ui import load_custom_css
 
 # --------------------------------------------------
-# Page Configuration
+# Load Theme
 # --------------------------------------------------
-
-st.set_page_config(
-    page_title="Home",
-    layout="wide"
-)
 
 load_custom_css()
 
 # --------------------------------------------------
-# Header
+# HERO SECTION
 # --------------------------------------------------
-
-page_title(
-    f"🚀 {APP_NAME}",
-    APP_TITLE
-)
-
-st.markdown(
-    """
-Welcome to **InsightIQ**, an AI-Powered Retail Analytics Platform designed to help
-businesses transform raw sales data into meaningful insights, interactive dashboards,
-AI-generated recommendations, forecasting, and executive reports.
-"""
-)
-
-st.divider()
-
-# --------------------------------------------------
-# Platform Features
-# --------------------------------------------------
-
-st.subheader("✨ Platform Features")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.success("📁 Upload Retail Dataset")
-    st.success("🧹 Clean & Validate Data")
-    st.success("📊 Interactive Dashboard")
-    st.success("📈 Sales Analytics")
-
-with col2:
-    st.success("🤖 AI Business Insights")
-    st.success("🔮 Sales Forecasting")
-    st.success("📄 Executive PDF Reports")
-    st.success("⚙️ Intelligent Data Profiling")
-
-st.divider()
-
-# --------------------------------------------------
-# Workflow
-# --------------------------------------------------
-
-st.subheader("🔄 Analytics Workflow")
 
 st.markdown("""
-1. 📁 Upload a retail dataset
-2. 🧹 Clean and validate the data
-3. 📊 Explore interactive visualizations
-4. 🤖 Generate AI-powered business insights
-5. 📈 Forecast future sales
-6. 📄 Download executive PDF reports
-""")
+<div class="hero-box">
 
+<h1>🚀 InsightIQ</h1>
+
+<h2>Enterprise Retail Intelligence Platform</h2>
+
+<p>
+Transform raw retail sales data into AI-powered business intelligence.
+Analyze sales, generate dashboards, forecast future trends,
+and receive intelligent recommendations in one platform.
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
+st.write("")
+
+# --------------------------------------------------
+# QUICK ACTIONS
+# --------------------------------------------------
+
+st.subheader("🚀 Quick Actions")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if st.button("📤 Upload Dataset", use_container_width=True):
+        st.switch_page("pages/2_Upload.py")
+
+with col2:
+    if st.button("📊 Dashboard", use_container_width=True):
+        st.switch_page("pages/5_Dashboard.py")
+
+with col3:
+    if st.button("🤖 AI Insights", use_container_width=True):
+        st.switch_page("pages/AI_Insights.py")
+
+st.write("")
 st.divider()
 
 # --------------------------------------------------
-# Technologies
+# PLATFORM MODULES
 # --------------------------------------------------
 
-st.subheader("🛠️ Technology Stack")
+st.subheader("✨ Platform Modules")
 
-tech1, tech2, tech3, tech4 = st.columns(4)
+row1 = st.columns(3)
 
-tech1.info("🐍 Python")
-tech2.info("📊 Streamlit")
-tech3.info("🤖 OpenRouter AI")
-tech4.info("📈 Plotly")
+with row1[0]:
+    st.info(
+        """
+### 📤 Upload
+
+Import CSV / Excel retail datasets.
+"""
+    )
+
+with row1[1]:
+    st.info(
+        """
+### 🧹 Cleaning
+
+Handle missing values, duplicates and validation.
+"""
+    )
+
+with row1[2]:
+    st.info(
+        """
+### 📊 EDA
+
+Visualize trends and explore business insights.
+"""
+    )
+
+row2 = st.columns(3)
+
+with row2[0]:
+    st.info(
+        """
+### 📈 Dashboard
+
+Interactive KPIs and charts.
+"""
+    )
+
+with row2[1]:
+    st.info(
+        """
+### 🤖 AI Insights
+
+Generate intelligent business recommendations.
+"""
+    )
+
+with row2[2]:
+    st.info(
+        """
+### 🔮 Forecasting
+
+Predict future sales using AI models.
+"""
+    )
 
 st.divider()
 
-# --------------------------------------------------
-# Quick Start
-# --------------------------------------------------
+st.subheader("📈 Analytics Workflow")
 
-st.subheader("🚀 Get Started")
+workflow = st.columns(6)
 
-st.info(
-    "Navigate to the **Upload** page from the sidebar and upload a retail dataset to begin your analytics journey."
-)
+steps = [
+    "📤 Upload",
+    "🧹 Cleaning",
+    "📊 EDA",
+    "📈 Dashboard",
+    "🤖 AI",
+    "📄 Reports",
+]
 
-st.success("🎉 Welcome to InsightIQ! Your AI-powered business analytics platform is ready.")
+for col, step in zip(workflow, steps):
+    with col:
+        st.success(step)
+
+st.divider()
+
+st.subheader("🛠 Technology Stack")
+
+t1, t2, t3, t4 = st.columns(4)
+
+with t1:
+    st.metric("Language", "Python")
+
+with t2:
+    st.metric("Framework", "Streamlit")
+
+with t3:
+    st.metric("AI Engine", "OpenRouter")
+
+with t4:
+    st.metric("Charts", "Plotly")
+
+st.divider()
