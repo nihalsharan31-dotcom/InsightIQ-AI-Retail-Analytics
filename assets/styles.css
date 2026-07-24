@@ -15,3 +15,14 @@
     border:1px solid #ddd;
     background:#fafafa;
 }
+/* Hide only the helper text under the Upload button */
+[data-testid="stFileUploader"] div small {
+    display: none !important;
+}
+
+
+
+/* Hide only "200MB per file • CSV, XLSX" */
+[data-testid="stFileUploaderDropzoneInstructions"] span {
+    display: none !important;
+}

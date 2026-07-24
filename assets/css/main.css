@@ -545,3 +545,33 @@ section[data-testid="stSidebar"] label{
 [data-testid="stFileUploader"] span{
     color:#000000!important;
 }
+
+/* Hide default Streamlit upload helper text */
+div[data-testid="stFileUploader"] small {
+    display: none !important;
+}
+
+/* Make uploader fit only around the button */
+div[data-testid="stFileUploader"] section {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: auto !important;
+    padding: 8px 12px !important;
+    border-radius: 12px !important;
+}
+
+/* Remove extra empty space */
+div[data-testid="stFileUploader"] {
+    width: fit-content !important;
+}
+
+/* Hide Streamlit helper text */
+div[data-testid="stFileUploader"] small {
+    display: none !important;
+}
+
+
+/* Hide the "200MB per file • CSV, XLSX" text */
+[data-testid="stFileUploaderDropzoneInstructions"] span {
+    display: none !important;
+}

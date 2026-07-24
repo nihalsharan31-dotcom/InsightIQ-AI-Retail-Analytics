@@ -40,11 +40,11 @@ st.markdown("""
 <h3 style="margin-bottom:10px;">📤 Upload Your Dataset</h3>
 
 <p style="color:#94A3B8;margin-bottom:12px;">
-Select a CSV or Excel file to begin AI-powered analytics.
+
 </p>
 
 <p style="color:#FFFFFF;font-size:17px;font-weight:600;margin-bottom:8px;">
-📂 Choose a CSV or Excel File 
+📂 Choose a CSV or Excel File to begin AI-powered analytics.
 </p>
 """, unsafe_allow_html=True)
 
@@ -54,7 +54,7 @@ uploaded_file = st.file_uploader(
     label_visibility="collapsed",
     help="Supported formats: CSV, XLSX"
 )
-
+st.caption("📄 Maximum file size: 200 MB • Supported formats: CSV, XLSX")
 
 # =====================================================
 # PROCESS DATASET
